@@ -59,6 +59,10 @@ section {
 
 @import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
 
+p {
+    margin: 2px 0;                    /* 各pタグの上下の余白を調整 */
+}
+
 h1 {
   font-family: 'Itim', cursive;
 }
@@ -69,7 +73,21 @@ h2 {
     font-size: 20px;
     padding: 10px;
 }
+
+h5 {
+    font-family: 'Itim', cursive;
+    font-size: 24px;
+    text-align: center;
+}
       
+#achievement-badges {
+    margin: 40px;
+    padding: 20px;
+    background-color: #f9f9f9; /* 背景色を調整 */
+    border: 1px solid #ddd; /* セクションの枠線 */
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 少しの影で立体感 */
+}
 
 .time-input {
     text-align: center;
@@ -207,15 +225,11 @@ li.task-item.dragging {
     background-size: cover;           /* 画像をカバーとして表示 */
     background-position: center;      /* 画像を中央に配置 */
     color: white;                     /* 文字の色 */
-    font-size: 10px;                  /* 文字サイズ */
+    font-size: 11px;                  /* 文字サイズ */
     font-weight:500;
     text-align: center;               /* 文字の中央揃え */
     padding: 10px;                    /* バッジ内の余白 */
     box-sizing: border-box;           /* 余白を含めてサイズ調整 */
-}
-
-.badge p {
-    margin: 2px 0;                    /* 各pタグの上下の余白を調整 */
 }
 
 .badge h1 {
@@ -223,7 +237,8 @@ li.task-item.dragging {
 }
 
 /* 金色バッジ */
-.gold {
+.gold, 
+#example-badge {
     background-image: url(../other/画像/medal_gold-preview.png);
     color: rgb(0, 0, 0);
 }
@@ -239,9 +254,6 @@ li.task-item.dragging {
     background-image: url(../other/画像/medal_bronze.png);
     color: white;
 }
-
-
-
 
 .modal-content input[type="text"],
 .modal-content input[type="date"],
