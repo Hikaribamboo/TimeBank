@@ -4,3 +4,17 @@ git add .
 git commit -m "Force update remote with local changes"
 
 git push origin master --force
+
+
+
+・githubに新しいリポジトリをプッシュする方法
+
+git init
+
+git remote add origin https://github.com/YourUsername/NewProject.git
+
+git add .
+
+git commit -m "comments"
+
+git push origin master
