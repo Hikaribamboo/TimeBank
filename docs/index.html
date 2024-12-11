@@ -68,7 +68,7 @@
         <input type="text" id="task-title" required>
 
         <label for="task-duration">目標時間の設定</label>
-        <input type="number" id="target-time" name="target-time" value="8" min="0" max="24" step="1">
+        <input type="number" id="target-time" name="target-time" value="0" min="0" step="1">
 
         <label for="task-deadline">期限の設定</label>
         <input type="date" id="task-deadline">
@@ -173,15 +173,14 @@
         </div>
         <form id="task-update-form">
             <h3>新しい目標時間を設定しますか？</h3>
-            <input type="number" id="new-duration" name="new-duration">
-            <label>目標時間</label>
+            <input type="number" id="new-duration" name="new-duration" value="0" min="0" step="1">
 
             <label for="new-deadline">期限:</label>
             <input type="date" id="new-deadline" name="new-deadline">
 
             <button type="button" class="button-nomal green" id="update-button">送信</button>
         </form>
-        <button class="button-nomal" id="close-button">閉じる</button>
+        <button class="button-nomal" id="close-button2">閉じる</button>
     </div>
 </div>
 
