@@ -233,8 +233,7 @@ li.task-item.dragging {
 
 .purple {
     background-image: url(../other/画像/badge_purple.png);
-    width: 100px;                      /* バッジの幅 */
-    height: 100px;  
+    width: 88px;
 }
 
 /* 金色バッジ */
