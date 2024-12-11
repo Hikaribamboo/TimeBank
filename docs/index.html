@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
 </head>
 <body>
@@ -126,7 +127,7 @@
             <div class="time-input">
                 <input type="number" id="hours" name="hours" min="0" max="24" placeholder="時間">
                 <input type="number" id="minutes" name="minutes" min="0" max="55" step="5" placeholder="分">
-                <button type="button" class="button-nomal green" id="save-record" onclick="saveTaskDetails()">送信</button>
+                <button type="button" class="button-nomal green" id="save-record">送信</button>
             </div>
 
             <div class="next-container">
@@ -168,6 +169,15 @@
     <div class="modal-content">
         <h4 id="center">おめでとうございます！🎉</h4>
         <p id="center">タスクを達成しました！</p>
+        <div id="badge-message" class="hidden">
+            <p>あなたはこのタスクでバッジを獲得しました！</p>
+        </div>
+        <button class="button-nomal" id="next-modal-button">次へ</button>
+    </div>
+</div>
+
+<div id="new-goal-modal" class="modal hidden">
+    <div class="modal-content">
         <form id="task-update-form">
             <h3>新しい目標時間を設定しますか？</h3>
             <input type="number" id="new-duration" name="new-duration" value="0" min="0" step="1">
@@ -177,13 +187,8 @@
 
             <button type="button" class="button-nomal green" id="update-button">送信</button>
         </form>
-        <button class="button-nomal" id="close-button2">次へ</button>
-    </div>
-</div>
 
-<div>
-    <div id="badge-message" class="hidden">
-        <p>あなたはこのタスクでバッジを獲得しました！</p>
+        <button class="button-nomal" id="close-button2">閉じる</button>
     </div>
 </div>
 
@@ -193,9 +198,7 @@
     <div>
         <p>(例)</p>
         <div id="example-badge" class="badge">
-            <p>魚釣り</p>
-            <h1>250h</h1>
-            <p>12/01</p>
+            <h1>250</h1>
         </div>
     </div>
     <div id="badges-container"></div>

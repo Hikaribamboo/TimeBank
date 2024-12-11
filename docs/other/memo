@@ -1,0 +1,6 @@
+・githubのファイルを上書きする方法
+git add .
+
+git commit -m "Force update remote with local changes"
+
+git push origin master --force

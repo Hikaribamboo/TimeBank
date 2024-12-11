@@ -1,4 +1,4 @@
-import { deleteTask, saveToLocalStorage, loadData, clearFormInputs, closeModal, tasks, badges } from './tasks.js';
+import { deleteTask, saveToLocalStorage, updateTask, loadData, clearFormInputs, closeModal, tasks, badges } from './tasks.js';
 
 let stopwatchElapsedSeconds = 0; // ストップウォッチ用経過時間
 let stopwatchInterval;    // ストップウォッチ用インターバルID
@@ -252,7 +252,7 @@ export function saveTimeToTask(taskId, timeInSeconds) {
     const fromType = taskId.includes("today") ? 'today' : 'long_term';
     const task = tasks[fromType].find(task => task.id === taskId);
     const durationSeconds = task.duration * 36
-    console.log(tasks)
+    
     if (task) {
         task.totalTime = (task.totalTime || 0) + timeInSeconds; // 既存の累計時間に加算
         
@@ -272,48 +272,66 @@ export function saveTimeToTask(taskId, timeInSeconds) {
 }
 
 function showCongratsModal(taskId, durationSeconds) {
+
     const modal = document.getElementById('congrats-modal');
     const sound = document.getElementById('celebration-sound');
     const fromType = taskId.includes("today") ? 'today' : 'long_term';
     const task = tasks[fromType].find(task => task.id === taskId);
     const taskTitle = task.title;
-    const form = document.getElementById("task-update-form"); // モーダル内のフォームを取得
 
     // メッセージにタスク名を含める
     modal.querySelector('p').textContent = `${taskTitle}を達成しました！素晴らしい努力です！`;
 
     modal.classList.remove('hidden');
+    modal.classList.add('show')
     sound.play(); // サウンド再生
 
-    // 送信ボタンにクリックイベントを追加
-    const updateButton = document.getElementById('update-button');
-    updateButton.onclick = () => {
-        const newDeadline = form.elements["new-deadline"] ? form.elements["new-deadline"].value : ''; // 期限の取得
-        const newDuration = form.elements["new-duration"].value; // 新しい目標時間の取得
-
-        // 更新する内容を格納
-        const updatedValues = {
-            title: taskTitle,
-            duration: newDuration,
-            totalTime: 0, 
-            eachRecord: []
-        };
-
-        if (newDeadline) {
-            updatedValues.deadline = newDeadline; // 期限が入力されていれば追加
-        }
-
-        updateTask(taskId, updatedValues); // タスクを更新
+    //次へボタンの挙動
+    const nextButton = document.getElementById('next-modal-button');
+    nextButton.onclick = () => {
         closeModal('congrats-modal')
-    };
+        addBadge(taskTitle, durationSeconds)
+        showSetmodal(taskId)
+    }
+}
+
+function showSetmodal(taskId) {
+    const modal = document.getElementById('new-goal-modal');
+
+    modal.classList.remove('hidden');
+    modal.classList.add('show')
+
+    //送信ボタンの挙動
+    const sendButton = document.getElementById('update-button');
+    sendButton.onclick = () => {
+        setNewgoal(taskId)
+    }
 
     // 閉じるボタンの挙動
     const closeButton = document.getElementById('close-button2');
     closeButton.onclick = () => {
+        closeModal('new-goal-modal')
         deleteTask(taskId)
-        closeModal('congrats-modal')
-        addBadge(taskTitle, durationSeconds)
     };
+} 
+
+function setNewgoal(taskId) {
+    const fromType = taskId.includes("today") ? 'today' : 'long_term';
+    const task = tasks[fromType].find(task => task.id === taskId);
+    const taskTitle = task.title;
+
+    // フォームから更新内容を取得
+    const form = document.getElementById("task-update-form"); // モーダル内のフォームを取得
+    const updatedValues = {
+        title: taskTitle,
+        deadline: form.elements["new-deadline"].value,
+        duration: form.elements["new-duration"].value,
+        totalTime: 0, 
+        eachRecord: []
+    };
+
+    updateTask(taskId, updatedValues)
+    closeModal('new-goal-modal')
 }
 
 // モーダルを閉じる
@@ -332,12 +350,8 @@ export function addBadge(taskTitle, durationSeconds) {
 
     };
 
-    console.log(badges)
-
     // バッジをリストに追加
     badges.push(badge);
-
-    console.log(badges)
     
     // バッジをローカルストレージに保存
     saveToLocalStorage('badges', badges);
@@ -365,9 +379,7 @@ export function displayBadges() {
         badgeElement.classList.add(timeClass);  // 達成時間に応じたクラスを追加
 
         badgeElement.innerHTML = `
-            <p>${badge.title}</p>
-            <h1>${achievedTime}h</h1>
-            <p> ${badge.date}</p>
+            <h1>${achievedTime}</h1>
         `;
         container.appendChild(badgeElement);
     });

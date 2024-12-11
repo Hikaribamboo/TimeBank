@@ -34,7 +34,6 @@ export function deleteTask(taskId) {
 
 export function saveToLocalStorage(key, data) {
     localStorage.setItem(key, JSON.stringify(data));
-    console.log(`${key} saved to localStorage:`, data);
 }
 
 // ローカルストレージからタスクを読み込む
@@ -253,7 +252,7 @@ export function displayTasks() {
 
             // タスククリック時の詳細表示設定
             taskElement.onclick = () => {
-                showTaskDetails(task);
+                showTaskDetails(task.id);
                 document.getElementById('task-details-modal').setAttribute('data-task-id', task.id);
             };
 
@@ -312,7 +311,9 @@ function getProgressSectionColor(index) {
     return colors[index % colors.length]; // 色の順番を繰り返す
 }
 
-function showTaskDetails(task) {
+function showTaskDetails(taskId) {
+    const fromType = taskId.includes("today") ? 'today' : 'long_term';
+    const task = tasks[fromType].find(task => task.id === taskId);
     const modal = document.getElementById("task-details-modal");
     const form = document.getElementById('task-details-form');
 
@@ -328,12 +329,11 @@ function showTaskDetails(task) {
 
     // モーダルを表示
     modal.classList.remove('hidden');
-    console.log("モーダルを表示しました");
-
     // ボタンにイベントを設定
     document.getElementById('set-timer').onclick = () => setTimerForm(task);
     document.getElementById('set-stopwatch').onclick = () => showConfirmForm(task);
     document.getElementById('close-button').onclick = () => closeModal('task-details-modal')
+    document.getElementById('save-record').onclick = () => saveTaskDetails(taskId)
 }
 
 
@@ -350,8 +350,7 @@ export function updateTask(taskId, updatedValues) {
 }
 
 // モーダルからタスクを保存
-export function saveTaskDetails() {
-    const taskId = document.getElementById("task-details-modal").getAttribute("data-task-id"); // タスクID取得
+export function saveTaskDetails(taskId) {
     const form = document.getElementById("task-details-form"); // モーダル内のフォームを取得
 
     // 時間と分の入力値を取得
