@@ -34,10 +34,12 @@ function startStopwatch(task) {
     stopwatchModal.innerHTML = `
         <div class="modal">
             <div class="modal-content background-set">
-                <p id="stopwatch-display">0秒</p>
-                <button class="button-nomal" id="stopwatch-toggle">停止</button>
-                <button class="button-nomal green" id="stopwatch-save">保存</button>
-                <button class="button-nomal red" id="stopwatch-end" onclick = cancelTimer()>キャンセル</button>
+                <h3 id="stopwatch-display">0秒</h3>
+                <div class="next-container">
+                    <button class="button-nomal" id="stopwatch-toggle">停止</button>
+                    <button class="button-nomal green" id="stopwatch-save">保存</button>
+                    <button class="button-nomal red" id="stopwatch-end" onclick = cancelTimer()>キャンセル</button>
+                </div>
             </div>
         </div>
     `;
@@ -120,15 +122,15 @@ function setTimerForm(task) {
     timerModal.classList.add('show'); // `show` クラスを追加
 
     // 開始ボタンのクリックイベントを設定
-    document.getElementById('start-timer-button').onclick = function () {
-        startTimer(task); // startTimer 関数を呼び出し、task を引数として渡す
-    };
+    document.getElementById('start-timer-button').onclick = () => startTimer(task);
 
     document.getElementById('cancel-button').onclick = () => closeModal('timer-setup-modal')
 }
 
 // タイマーを開始
 function startTimer(task) {
+    closeModal('timer-setup-modal')
+
     const taskId = task.id;
     const hours = parseInt(document.getElementById('timer-hours').value, 10) || 0;
     const minutes = parseInt(document.getElementById('timer-minutes').value, 10) || 0;
@@ -152,10 +154,12 @@ function startCountdown(totalSeconds, taskId) {
     timerModal.innerHTML = `
     <div class="modal">
         <div class="modal-content hidden">
-            <p id="countdown-display">0秒</p>
-            <button class="button-nomal" id="timer-toggle">停止</button>
-            <button class="button-nomal green" id="timer-save">保存</button>
-            <button class="button-nomal red" id="cancel-timer">キャンセル</button>
+            <h3 id="countdown-display">0秒</h3>
+            <div class="next-container">
+                <button class="button-nomal" id="timer-toggle">停止</button>
+                <button class="button-nomal green" id="timer-save">保存</button>
+                <button class="button-nomal red" id="cancel-timer">キャンセル</button>
+            </div>
         </div>
     </div>
     `;
