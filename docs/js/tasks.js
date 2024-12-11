@@ -77,72 +77,71 @@ window.onload = loadData('tasks', tasks, task => task && task.title);
 // バッジを読み込む
 window.onload = loadData('badges', badges, badge => badge && badge.title);
 
+// 初期化処理
 window.onload = () => {
-    loadTitle('today-tasks', 'today-tasks-title');
-    loadTitle('long-term-tasks', 'long-term-tasks-title');
+    loadTitles(); // 保存されたタイトルをロード
 };
 
 function editTitle(sectionId) {
     const section = document.getElementById(sectionId);
     const titleElement = section.querySelector('h2');
-    const currentTitle = titleElement.childNodes[0].nodeValue.trim(); // 現在のタイトル
+    const currentTitle = titleElement.textContent.trim();
 
-    // 入力フィールドを生成
+    // 入力フィールドとボタンを作成
     const inputField = document.createElement('input');
     inputField.type = 'text';
     inputField.value = currentTitle;
     inputField.className = 'edit-title-input';
 
-    // ペケマークボタンを生成
-    const cancelButton = document.createElement('button');
-    cancelButton.textContent = '✔';
-    cancelButton.className = 'edit-title-cancel';
+    const saveButton = document.createElement('button');
+    saveButton.textContent = '✔';
+    saveButton.className = 'edit-title-save';
 
+    // 確定処理
     const confirmEdit = () => {
         const newTitle = inputField.value.trim() || currentTitle;
-        titleElement.innerHTML = '';
-        titleElement.appendChild(document.createTextNode(newTitle));
+        titleElement.textContent = newTitle;
         titleElement.appendChild(createEditButton(sectionId));
-        saveTitle(sectionId, `${sectionId}-title`); // タイトルを保存
-    };    
+        saveTitle(sectionId, newTitle); // セクションIDとタイトルをセットで保存
+    };
 
-    // Enter キーで確定する
+    // Enterキーで確定
     inputField.onkeydown = (e) => {
         if (e.key === 'Enter') {
             confirmEdit();
         }
     };
 
-    // ペケマークで確定する
-    cancelButton.onclick = () => {
+    // ボタンで確定
+    saveButton.onclick = () => {
         confirmEdit();
     };
 
-    // h2 の中身を編集モードに置き換え
+    // 編集モードに切り替え
     titleElement.innerHTML = '';
     titleElement.appendChild(inputField);
-    titleElement.appendChild(cancelButton);
-
-    // 入力フィールドにフォーカスを当てる
+    titleElement.appendChild(saveButton);
     inputField.focus();
 }
 
 // タイトルを保存する
-function saveTitle(sectionId, key) {
-    const section = document.getElementById(sectionId);
-    const titleElement = section.querySelector('h2');
-    const titleText = titleElement.childNodes[0].nodeValue.trim(); // タイトルを取得
-    localStorage.setItem(key, titleText); // ローカルストレージに保存
+function saveTitle(sectionId, title) {
+    const savedTitles = JSON.parse(localStorage.getItem('sectionTitles')) || {};
+    savedTitles[sectionId] = title;
+    localStorage.setItem('sectionTitles', JSON.stringify(savedTitles));
 }
 
-// タイトルをロードして表示する
-function loadTitle(sectionId, key) {
-    const savedTitle = localStorage.getItem(key); // ローカルストレージから取得
-    if (savedTitle) {
+// 保存されたタイトルをロードする
+function loadTitles() {
+    const savedTitles = JSON.parse(localStorage.getItem('sectionTitles')) || {};
+    Object.keys(savedTitles).forEach(sectionId => {
         const section = document.getElementById(sectionId);
-        const titleElement = section.querySelector('h2');
-        titleElement.childNodes[0].nodeValue = savedTitle; // タイトルをセット
-    }
+        if (section) {
+            const titleElement = section.querySelector('h2');
+            titleElement.textContent = savedTitles[sectionId];
+            titleElement.appendChild(createEditButton(sectionId));
+        }
+    });
 }
 
 // 編集ボタン（Font Awesome のアイコンを使用）を生成する関数

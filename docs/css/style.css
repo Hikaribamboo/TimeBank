@@ -24,7 +24,7 @@ header {
 
 /* ロゴのスタイル */
 #logo {
-    font-size: 3rem; /* 大きめのフォントサイズ */
+    font-size: 2rem; /* 大きめのフォントサイズ */
     font-weight: bold;
     color: #2664b3; /* 緑色（安心感と成長を表現） */
     display: inline-block;
@@ -358,24 +358,22 @@ li.task-item.dragging {
 }
 
 .edit-title-input {
-    font-size: 1.2rem;
-    padding: 2px 5px;
+    font-size: 22px;
+    padding: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    margin-right: 5px; /* ペケマークとの間に余白 */
+    margin-right: 10px; /* ペケマークとの間に余白 */
 }
 
-.edit-title-cancel {
-    background: none;
-    border: none;
-    font-size: 1.2rem;
+.edit-title-complete {
+    font-size: 22px;
     cursor: pointer;
     color: #888;
     transition: color 0.3s ease;
 }
 
-.edit-title-cancel:hover {
-    color: #f00; /* ホバー時に赤く */
+.edit-title-complete:hover {
+    color: rgb(65, 206, 9); /* ホバー時に赤く */
 }
 
 .edit-title-button {
