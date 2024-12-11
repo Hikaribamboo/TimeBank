@@ -231,6 +231,9 @@ li.task-item.dragging {
     margin-left: 1px;
 }
 
+.purple {
+    background-image: url(../other/画像/badge_purple.png);
+}
 
 /* 金色バッジ */
 .gold, 

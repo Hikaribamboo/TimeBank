@@ -370,8 +370,10 @@ export function displayBadges() {
         let timeClass = '';
         const achievedTime = ((badge.achievedTime) / 36);
         if (achievedTime >= 100) {
-            timeClass = 'gold';  // 金色
+            timeClass = 'purple'
         } else if (achievedTime >= 50) {
+            timeClass = 'gold';  // 金色
+        } else if (achievedTime >= 10) {
             timeClass = 'silver';  // 銀色
         } else if (achievedTime >= 0) {
             timeClass = 'bronze';  // 銅色
