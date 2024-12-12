@@ -80,7 +80,8 @@ h2 {
     text-align: center;
     font-weight: 500;
     font-size: 22px;
-    padding: 10px;
+    padding-top: 10px;
+    padding-bottom: 20px;
 }
 
 h3{
@@ -277,7 +278,8 @@ li.task-item.dragging {
     box-shadow: inset 1px 1px 1px #fff;
     border-radius: 5px;
     padding: 10px;
-    margin-left: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
     margin-bottom: 16px;
 }
 
@@ -298,6 +300,12 @@ li.task-item.dragging {
     --button-gradient-end: #7adfa4;
 }
 
+.button-nomal.orange {
+    --button-border-color: #ff8928;
+    --button-gradient-start: #ffd5b2;
+    --button-gradient-end: #ff8928;
+}
+
 /* ======== タスク作成ボタン ======== */
 .task-create-button {
     background-color: #2664b3;
@@ -311,7 +319,7 @@ li.task-item.dragging {
 }
 
 /* ======== ばってんボタン ======== */
-#close-button {
+.close-modal-button {
     position: absolute;
     top: 5px; /* モーダル枠の内側に配置 */
     right: 10px;
@@ -320,6 +328,7 @@ li.task-item.dragging {
     cursor: pointer;
     background: none;
     border: none;
+    font-weight: 500;
 }
 
 /* 削除ボタンの基本スタイル */

@@ -61,7 +61,6 @@ function startStopwatch(task) {
     // 保存ボタン
     saveButton.onclick = () => {
         saveTimeToTask(taskId, stopwatchElapsedSeconds); // ストップウォッチの経過時間を保存
-        alert('時間が保存されました');
         resetStopwatch(display);          // ストップウォッチをリセット
         stopwatchModal.remove();          // モーダルを閉じる
     };
@@ -188,7 +187,6 @@ function startCountdown(totalSeconds, taskId) {
     saveButton.onclick = () => {
         const elapsedTime = totalSeconds - timerRemainingTime; // タイマーで計測した時間
         saveTimeToTask(taskId, elapsedTime); // 時間を保存
-        alert('時間が保存されました');
         
         timerModal.classList.remove('show');
         timerModal.classList.add('hidden');

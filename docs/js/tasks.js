@@ -329,12 +329,64 @@ function showTaskDetails(taskId) {
     // モーダルを表示
     modal.classList.remove('hidden');
     // ボタンにイベントを設定
-    document.getElementById('set-timer').onclick = () => setTimerForm(task);
-    document.getElementById('set-stopwatch').onclick = () => showConfirmForm(task);
     document.getElementById('close-button').onclick = () => closeModal('task-details-modal')
-    document.getElementById('save-record').onclick = () => saveTaskDetails(taskId)
+    document.getElementById('add-record-button').onclick = () => addRecord(taskId)
+    document.getElementById('update-task-button').onclick = () => saveTaskDetails(taskId, 'task-details-form')
 }
 
+function addRecord(taskId) {
+    closeModal('task-details-modal')
+
+    const modal = document.getElementById("add-record-modal");
+    const fromType = taskId.includes("today") ? 'today' : 'long_term';
+    const task = tasks[fromType].find(task => task.id === taskId);
+    const form = document.getElementById("add-record-form");
+
+    modal.classList.remove('hidden');
+    modal.classList.add('show')
+
+    document.getElementById('close-button3').onclick = () => closeModal('add-record-modal')
+    document.getElementById('set-timer').onclick = () => setTimerForm(task);
+    document.getElementById('set-stopwatch').onclick = () => showConfirmForm(task);
+    document.getElementById('save-record').onclick = () => saveTaskDetails(taskId, "add-record-form")
+}
+
+// モーダルからタスクを保存 
+export function saveTaskDetails(taskId, formId) {
+    const form = document.getElementById(formId);
+
+    // 時間と分の入力値を取得
+    const hours = form.elements['hours']?.value || '';
+    const minutes = form.elements['minutes']?.value || '';
+
+    // 時間と分が入力されていれば、保存処理を行う
+    if (hours || minutes) {
+        const timeInSeconds = (parseInt(hours) || 0) * 3600 + (parseInt(minutes) || 0) * 60;
+
+        // 時間をタスクに保存
+        saveTimeToTask(taskId, timeInSeconds);
+
+        // 入力フィールドをリセット
+        form.elements['hours'].value = '';
+        form.elements['minutes'].value = '';
+    }
+
+    // フォーム内にタイトルがあり値が入力されていれば更新
+    const title = form.elements['title']?.value || '';
+    if (title.trim()) {
+        const updatedValues = {
+            title,
+            deadline: form.elements['deadline']?.value || '',
+            duration: form.elements['duration']?.value || ''
+        };
+
+        // タスク更新関数を呼び出し
+        updateTask(taskId, updatedValues);
+    }
+
+    // モーダルを閉じる
+    closeModal("add-record-modal");
+}
 
 // タスクを更新する汎用関数
 export function updateTask(taskId, updatedValues) {
@@ -346,41 +398,6 @@ export function updateTask(taskId, updatedValues) {
         saveToLocalStorage('tasks', tasks);                        // ローカルストレージに保存
         displayTasks(taskType);             // 表示を更新
     }
-}
-
-// モーダルからタスクを保存
-export function saveTaskDetails(taskId) {
-    const form = document.getElementById("task-details-form"); // モーダル内のフォームを取得
-
-    // 時間と分の入力値を取得
-    const hours = form.elements['hours'].value;
-    const minutes = form.elements['minutes'].value;
-
-    // 時間と分が入力されていれば、保存処理を行う
-    if (hours || minutes) {
-        // 時間と分を「秒」に換算
-        const timeInSeconds = (parseInt(hours) || 0) * 3600 + (parseInt(minutes) || 0) * 60;
-        
-        // saveTimeToTaskを呼び出し、時間を保存
-        saveTimeToTask(taskId, timeInSeconds);
-
-        // 入力フィールドを空にする
-        form.elements['hours'].value = '';
-        form.elements['minutes'].value = '';
-    }
-
-    // フォームから更新内容を取得
-    const updatedValues = {
-        title: form.elements["title"].value,
-        deadline: form.elements["deadline"].value,
-        duration: form.elements["duration"].value
-    };
-
-    // 汎用のタスク更新関数を呼び出し
-    updateTask(taskId, updatedValues);
-
-    // モーダルを閉じる
-    closeModal("task-details-modal");
 }
 
 // モーダルを閉じる

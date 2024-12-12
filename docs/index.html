@@ -104,7 +104,7 @@
 
         </style>
         
-        <!-- ボタンをまとめるためのラッパー -->
+        <!-- 横並びにしたいコンテンツをまとめるためのラッパー -->
         <div class="next-container">
             <button class="button-nomal red" id="cancel-button2">キャンセル</button>
             <button class="button-nomal green" id="add-task-button" onclick="addTask()">タスクを追加</button>
@@ -115,7 +115,7 @@
 <!-- 詳細情報を表示するためのモーダル -->
 <div id="task-details-modal" class="modal hidden">
     <div class="modal-content">
-        <button id="close-button">×</button>
+        <button id="close-button" class="close-modal-button">×</button>
         <h2>タスクの詳細</h2>
         <form id="task-details-form">
             
@@ -127,8 +127,19 @@
 
             <label for="task-deadline">期限</label>
             <input type="date" id="task-deadline" name="deadline">
-            
-            <label>記録する</label>
+            <button id="update-task-button" class="button-nomal green">更新</button>
+        </form>
+        <div class="next-container">
+        <button id="add-record-button" class="button-nomal orange">＋記録を追加</button>
+        </div>
+    </div>
+</div>
+
+<div id="add-record-modal" class="modal hidden">
+    <div class="modal-content">
+        <h2>進捗を記録する</h2>
+        <button id="close-button3" class="close-modal-button">×</button>
+        <form id="add-record-form">
             <div class="time-input">
                 <input type="number" id="hours" name="hours" min="0" max="24" placeholder="時間">
                 <input type="number" id="minutes" name="minutes" min="0" max="55" step="5" placeholder="分">
