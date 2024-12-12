@@ -16,31 +16,47 @@
     <header>
         <h1 id="logo">TimeBank</h1>
     </header>
+    <div class="container">
+        <!-- コンテンツを中央に配置し、最大幅を制限するために使用されるラッパー(wrapper:包むもの)のクラスです。 -->
+          <div class="row">
+          <!-- Flexboxを使用して子要素を横並びに配置するためのクラスです。 -->
+            <div class="col d2 m1">
 <main>
-    <section id="today-tasks" class="col d2 m1">
-        <h2>
-            タスクリスト
-            <button class="edit-title-button" onclick="editTitle('today-tasks')">
-                <i class="fas fa-edit"></i>
-            </button>            
-        </h2>
-        <ul id="today-task-list">
-            <!-- 今日のタスクがここに追加される -->
-        </ul>
-        <button class="task-create-button" onclick="showTaskForm('today')">＋ タスク作成</button>
+    <section id="section-today">
+        <div id="today-tasks" class="container">
+            <div class="row">
+                <div class="col d2 m1">
+                    <h2>
+                        タスクリスト
+                        <button class="edit-title-button" onclick="editTitle('today-tasks')">
+                            <i class="fas fa-edit"></i>
+                        </button>            
+                    </h2>
+                    <ul id="today-task-list">
+                        <!-- 今日のタスクがここに追加される -->
+                    </ul>
+                    <button class="task-create-button" onclick="showTaskForm('today')">＋ タスク作成</button>
+                </div>
+            </div>
+        </div>
     </section>
-    
-    <section id="long-term-tasks" class="col d2 m1">
-        <h2>
-            タスクリスト
-            <button class="edit-title-button" onclick="editTitle('long-term-tasks')">
-                <i class="fas fa-edit"></i>
-            </button>            
-        </h2>
-        <ul id="long-term-task-list">
-            <!-- 長期のタスクがここに追加される -->
-        </ul>
-        <button class="task-create-button" onclick="showTaskForm('long_term')">＋ タスク作成</button>
+    <section id="section-long">
+        <div id="long-term-tasks" class="container">
+            <div class="row">
+                <div class="col d2 m1">  
+                    <h2>
+                        タスクリスト
+                        <button class="edit-title-button" onclick="editTitle('long-term-tasks')">
+                            <i class="fas fa-edit"></i>
+                        </button>            
+                    </h2>
+                    <ul id="long-term-task-list">
+                        <!-- 長期のタスクがここに追加される -->
+                    </ul>
+                    <button class="task-create-button" onclick="showTaskForm('long_term')">＋ タスク作成</button>
+                </div>
+            </div>
+        </div>
     </section>
 </main>  
 
