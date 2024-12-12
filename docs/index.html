@@ -77,21 +77,7 @@
         <input type="number" id="target-time" name="target-time" value="0" min="0" step="1">
 
         <label for="task-deadline">期限の設定</label>
-        <input type="date" id="task-deadline">
-
-        <script>
-            // 今日の日付を取得
-            const today = new Date();
-            const yyyy = today.getFullYear();
-            const mm = String(today.getMonth() + 1).padStart(2, '0'); // 月は0から始まるため+1
-            const dd = String(today.getDate()).padStart(2, '0'); // 日付を2桁に
-
-            const minDate = `${yyyy}-${mm}-${dd}`; // "YYYY-MM-DD"形式でフォーマット
-
-            // カレンダーの最小日付を設定
-            const taskDeadlineInput = document.getElementById('task-deadline');
-            taskDeadlineInput.setAttribute('min', minDate);
-        </script>
+        <input type="date" id="task-deadline" class="task-deadline-input">
 
         <style>
             /* スピンボタンの全体的な大きさを調整 */
@@ -123,11 +109,15 @@
             <input type="text" id="task-title" name="title">
             
             <label for="task-duration">目標時間</label>
-            <input type="number" id="task-duration" name="duration">
+            <label>
+            <input type="number" id="task-duration" name="duration" min="0" step="1">
+            時間</label>
 
             <label for="task-deadline">期限</label>
-            <input type="date" id="task-deadline" name="deadline">
+            <input type="date" id="task-deadline" name="deadline" class="task-deadline-input">
             <button id="update-task-button" class="button-nomal green">更新</button>
+
+            
         </form>
         <div class="next-container">
         <button id="add-record-button" class="button-nomal orange">＋記録を追加</button>
@@ -227,6 +217,20 @@
     <script type="module" src="./js/tasks.js"></script>
     <script type="module" src="./js/timer.js"></script>
     <script type="module" src="./js/drag.js"></script>
+
+    <script>
+        // 今日の日付を取得
+        const today = new Date();
+        const yyyy = today.getFullYear();
+        const mm = String(today.getMonth() + 1).padStart(2, '0'); // 月は0から始まるため+1
+        const dd = String(today.getDate()).padStart(2, '0'); // 日付を2桁に
+
+        const minDate = `${yyyy}-${mm}-${dd}`; // "YYYY-MM-DD"形式でフォーマット
+
+        // カレンダーの最小日付を設定
+        const taskDeadlineInput = document.getElementById('task-deadline');
+        taskDeadlineInput.setAttribute('min', minDate);
+    </script>
 </body>
 </html>
 

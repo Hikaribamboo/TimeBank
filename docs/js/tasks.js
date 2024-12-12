@@ -158,18 +158,26 @@ function createEditButton(sectionId) {
     return editButton;
 }
 
-export function clearFormInputs(formId) {
-    const modalForm = document.querySelector(`#${formId}`);
-    if (modalForm) {
-        modalForm.querySelectorAll('input, textarea, select').forEach(input => {
-            if (input.type === 'checkbox' || input.type === 'radio') {
-                input.checked = false;
-            } else {
-                input.value = '';
-            }
-        });
-    }
+// 最小日付を取得する関数
+function getMinDate() {
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0'); // 月は0から始まるため+1
+    const dd = String(today.getDate()).padStart(2, '0'); // 日付を2桁に
+    return `${yyyy}-${mm}-${dd}`; // "YYYY-MM-DD"形式でフォーマット
 }
+
+// 入力フィールドに最小日付を設定する関数
+function setMinDateForInputs() {
+    const minDate = getMinDate(); // 最小日付を取得
+    const dateInputs = document.querySelectorAll('.task-deadline-input'); // 対象要素を取得
+    dateInputs.forEach(input => {
+        input.setAttribute('min', minDate);
+    });
+}
+
+// DOM読み込み後に実行
+document.addEventListener('DOMContentLoaded', setMinDateForInputs);
 
 // タスク追加後の処理
 function addTask() {
@@ -340,7 +348,6 @@ function addRecord(taskId) {
     const modal = document.getElementById("add-record-modal");
     const fromType = taskId.includes("today") ? 'today' : 'long_term';
     const task = tasks[fromType].find(task => task.id === taskId);
-    const form = document.getElementById("add-record-form");
 
     modal.classList.remove('hidden');
     modal.classList.add('show')
@@ -399,6 +406,21 @@ export function updateTask(taskId, updatedValues) {
         displayTasks(taskType);             // 表示を更新
     }
 }
+
+
+export function clearFormInputs(formId) {
+    const modalForm = document.querySelector(`#${formId}`);
+    if (modalForm) {
+        modalForm.querySelectorAll('input, textarea, select').forEach(input => {
+            if (input.type === 'checkbox' || input.type === 'radio') {
+                input.checked = false;
+            } else {
+                input.value = '';
+            }
+        });
+    }
+}
+
 
 // モーダルを閉じる
 export function closeModal(modalId) {

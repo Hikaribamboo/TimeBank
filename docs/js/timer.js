@@ -10,7 +10,7 @@ let timerIsRunning = false; // タイマー状態
 
 // ストップウォッチ確認フォームを表示
 function showConfirmForm(task) {
-    closeModal('task-details-modal')
+    closeModal('add-record-modal')
 
     const confirmModal = document.getElementById('confirm-modal'); // モーダルを取得
     confirmModal.classList.remove('hidden'); // `hidden` クラスを削除
@@ -114,7 +114,7 @@ function resetStopwatch(display) {
 
 // タイマー設定フォームを表示
 function setTimerForm(task) {
-    closeModal('task-details-modal')
+    closeModal('add-record-modal')
 
     const timerModal = document.getElementById('timer-setup-modal'); // モーダルを取得
     timerModal.classList.remove('hidden'); // `hidden` クラスを削除
