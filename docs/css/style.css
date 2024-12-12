@@ -190,7 +190,8 @@ li.task-item.dragging {
     margin-left: 20px;
 }
 
-.modal-content input[type="number"] {
+.modal-content input[type="number"],
+.modal-content input[type="date"] {
     width: 30%;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -198,13 +199,6 @@ li.task-item.dragging {
     padding: 10px;
     margin-bottom: 16px;
     margin-left: 20px;
-}
-
-.modal-content input[type="date"] {
-    font-size: 24px;
-    color: #5a5a5a;
-    padding-bottom: 8px;
-    padding-left: 20px;
 }
 
 .next-container {
