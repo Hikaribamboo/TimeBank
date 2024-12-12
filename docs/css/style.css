@@ -1,10 +1,3 @@
-/* 全体のリセット */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 :root {
     --button-border-color: #98b2e9;
     --button-gradient-start: #fdfbfb;
@@ -43,6 +36,8 @@ header {
 }
 
 main {
+    display: flex;
+    justify-content: space-between; /* セクション間のスペースを均等にする */
     align-items: flex-start; /* 縦の位置を揃える（必要なら変更） */
     gap: 20px; /* セクション間のスペース */
     margin: 20px; /* メイン全体の余白 */
@@ -56,16 +51,21 @@ section {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 少しの影で立体感 */
 }
 
-.container {
-    width: 90%; /* コンテナの幅を全体の90%に設定します。 */
-    max-width: var(--pagewidth); /* コンテナの最大幅をカスタムプロパティで設定したページ幅に制限します。 */
-    margin: 0 auto; /* 左右のマージン（外側の余白の幅）を自動に設定して中央寄せにします。 */
+.col {
+    min-height: 320px; 
+    padding: 16px; /* カラム内にある内側の余白の幅を設定します。 */
 }
 
-.row {
-    display: flex; /* 行にFlexboxを適用して子要素を横並びにします。 */
-    justify-content: space-between; /* 子要素を親要素内で均等に分散配置します。 */
-    flex-wrap: wrap; /* 行の幅が狭いときに要素を折り返し可能にします。 */
+.d1{
+    width: 100%; /* d1に属するカラムの幅を100%に表示します。 */
+}
+
+.d2{
+    width: 49%; /* d2に属するカラムの幅を画面の幅の約半分に表示します。 */
+}
+
+.d3{
+    width: 32%; /* d3に属するカラムの幅を画面の幅の約1/3に表示します。 */
 }
 
 #logo {
@@ -93,23 +93,6 @@ h5 {
     font-family: 'Itim', cursive;
     font-size: 24px;
     text-align: center;
-}
-
-.col {
-    min-height: 320px; 
-    padding: 16px; /* カラム内にある内側の余白の幅を設定します。 */
-}
-
-.d1{
-    width: 100%; /* d1に属するカラムの幅を100%に表示します。 */
-}
-
-.d2{
-    width: 49%; /* d2に属するカラムの幅を画面の幅の約半分に表示します。 */
-}
-
-.d3{
-    width: 32%; /* d3に属するカラムの幅を画面の幅の約1/3に表示します。 */
 }
 
 ul {
@@ -427,20 +410,20 @@ li.task-item.dragging {
 /* 画面幅が767px以下の場合のスタイル調整 */
 @media screen and (max-width: 767px) { 
     main {
+        display: flex; /* Flexbox を適用 */
         flex-direction: column; /* セクションを縦に並べる */
         align-items: stretch; /* セクションの幅を揃える */
     }
 
     .col {
-        width: 100%; /* カラムを画面幅に合わせる */
+        width: 100%;
         margin-bottom: 16px; /* カラム間の余白を追加 */
     }
 
     .m1 {
-        width: 100%; /* 他の要素も幅を100%に */
+        width: 100%;
     }
 }
-
 
 
 
