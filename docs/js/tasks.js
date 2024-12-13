@@ -185,11 +185,14 @@ function addTask() {
     const type = document.getElementById('task-form').dataset.type;
     const title = document.getElementById('task-title').value;
     const deadline = document.getElementById('task-deadline').value;
-    const duration = document.getElementById('task-duration').value;
+    const duration = document.getElementById('target-time').value;
     const id = `${type}-${nextTaskId}`;
 
-    if (title) {
+    console.log(duration)
+
+    if (title, duration) {
         const task = { id, title, deadline, duration, totalTime: 0, eachRecord: [] };
+        console.log(task)
 
         tasks[type].push(task);
         nextTaskId++;
@@ -203,6 +206,12 @@ function addTask() {
 
         // モーダルを閉じる
         closeModal('task-form-container');
+
+        
+    } else if(title) {
+        alert("目標時間を入力してください")
+    } else if(duration) {
+        alert("タイトルを入力してください")
     }
 }
 

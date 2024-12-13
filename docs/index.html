@@ -73,7 +73,7 @@
         <label for="task-title">タスク名</label>
         <input type="text" id="task-title" required>
 
-        <label for="task-duration">目標時間の設定</label>
+        <label for="target-time">目標時間の設定</label>
         <input type="number" id="target-time" name="target-time" value="0" min="0" step="1">
 
         <label for="task-deadline">期限の設定</label>
@@ -109,15 +109,13 @@
             <input type="text" id="task-title" name="title">
             
             <label for="task-duration">目標時間</label>
-            <label>
-            <input type="number" id="task-duration" name="duration" min="0" step="1">
-            時間</label>
+            <input type="number" id="task-duration" name="duration" min="0" step="1" placeholder="時間">
 
             <label for="task-deadline">期限</label>
             <input type="date" id="task-deadline" name="deadline" class="task-deadline-input">
+            
             <button id="update-task-button" class="button-nomal green">更新</button>
 
-            
         </form>
         <div class="next-container">
         <button id="add-record-button" class="button-nomal orange">＋記録を追加</button>
@@ -173,28 +171,33 @@
 <!-- 達成モーダル -->
 <div id="congrats-modal" class="modal hidden">
     <div class="modal-content">
-        <h4 id="center">おめでとうございます！🎉</h4>
+        <h2 id="center">おめでとうございます！🎉</h2>
         <p id="center">タスクを達成しました！</p>
         <div id="badge-message" class="hidden">
             <p>あなたはこのタスクでバッジを獲得しました！</p>
         </div>
+        <div class="next-container">
         <button class="button-nomal" id="next-modal-button">次へ</button>
+        </div>
     </div>
 </div>
 
 <div id="new-goal-modal" class="modal hidden">
     <div class="modal-content">
         <form id="task-update-form">
-            <h3>新しい目標時間を設定しますか？</h3>
-            <input type="number" id="new-duration" name="new-duration" value="0" min="0" step="1">
-
+            <h2>新しい目標時間を設定しますか？</h2>
+            <label>
+                <input type="number" id="new-duration" name="new-duration" value="0" min="0" step="1">
+                時間</label>
             <label for="new-deadline">期限:</label>
             <input type="date" id="new-deadline" name="new-deadline">
 
             <button type="button" class="button-nomal green" id="update-button">送信</button>
         </form>
 
+        <div class="next-container">
         <button class="button-nomal" id="close-button2">閉じる</button>
+        </div>
     </div>
 </div>
 
