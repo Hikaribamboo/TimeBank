@@ -60,7 +60,7 @@ function startStopwatch(task) {
 
     // 保存ボタン
     saveButton.onclick = () => {
-        clearInterval(timerInterval);
+        clearInterval(stopwatchInterval);
         saveTimeToTask(taskId, stopwatchElapsedSeconds); // ストップウォッチの経過時間を保存
         resetStopwatch(display);          // ストップウォッチをリセット
         stopwatchModal.remove();          // モーダルを閉じる
