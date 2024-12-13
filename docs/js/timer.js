@@ -252,6 +252,7 @@ function updateDisplay(display) {
 
 // タスクIDに基づいて累計時間を保存
 export function saveTimeToTask(taskId, timeInSeconds) {
+    alert("進捗が保存されました")
     // タスクIDで該当するタスクを検索
     const fromType = taskId.includes("today") ? 'today' : 'long_term';
     const task = tasks[fromType].find(task => task.id === taskId);
