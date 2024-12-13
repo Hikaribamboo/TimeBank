@@ -252,7 +252,6 @@ function updateDisplay(display) {
 
 // タスクIDに基づいて累計時間を保存
 export function saveTimeToTask(taskId, timeInSeconds) {
-    alert("進捗が保存されました")
     // タスクIDで該当するタスクを検索
     const fromType = taskId.includes("today") ? 'today' : 'long_term';
     const task = tasks[fromType].find(task => task.id === taskId);
@@ -268,6 +267,7 @@ export function saveTimeToTask(taskId, timeInSeconds) {
     }
 
     closeModal('task-details-modal')
+    alert("進捗が保存されました")
     saveToLocalStorage('tasks', tasks)
     loadData('tasks', tasks, task => task && task.title);
 
