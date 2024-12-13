@@ -17,7 +17,11 @@ function showTaskForm(type) {
     taskForm.classList.remove('hidden'); // `hidden` クラスを削除
     taskForm.classList.add('show'); // `show` クラスを追加
 
-    document.getElementById('cancel-button2').onclick = () => closeModal('task-form-container')
+    document.getElementById('cancel-button2').onclick = () => {
+        clearFormInputs('task-form')
+        closeModal('task-form-container')
+    };
+
 }
 
 // タスク削除処理
@@ -190,29 +194,30 @@ function addTask() {
 
     console.log(duration)
 
-    if (title, duration) {
+    if (title && duration) {
         const task = { id, title, deadline, duration, totalTime: 0, eachRecord: [] };
-        console.log(task)
-
+        console.log(task);
+    
         tasks[type].push(task);
         nextTaskId++;
         localStorage.setItem('nextTaskId', nextTaskId);
-
+    
         saveToLocalStorage('tasks', tasks);
         displayTasks(type);
-
+    
         // フォームをクリア
         clearFormInputs('task-form');
-
+    
         // モーダルを閉じる
         closeModal('task-form-container');
-
-        
-    } else if(title) {
-        alert("目標時間を入力してください")
-    } else if(duration) {
-        alert("タイトルを入力してください")
+    } else if (!title && !duration) {
+        alert("タイトルと目標時間を入力してください");
+    } else if (!title) {
+        alert("タイトルを入力してください");
+    } else if (!duration) {
+        alert("目標時間を入力してください");
     }
+    
 }
 
 
