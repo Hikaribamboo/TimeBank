@@ -217,7 +217,6 @@ function addTask() {
     } else if (!duration) {
         alert("目標時間を入力してください");
     }
-    
 }
 
 
