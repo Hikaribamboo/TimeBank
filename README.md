@@ -56,8 +56,7 @@ This project was created with the following objectives:
 3. **Browser Developer Tools**: Debugging frontend issues.
 
 ### **How to Use**:
-1. Access to "https://hikaribamboo.github.io/TimeBank/" or clone the ripository like ```bash
-   git clone https://github.com/Hikaribamboo/QuickCart.git
+1. Access to "https://hikaribamboo.github.io/TimeBank/" 
 2. Add your target thing and target time
 3. Record progress by clicking task name
 4. You can use stopwatch and timer when you record time
