@@ -27,15 +27,6 @@ A simple time management app to organize tasks, set goals, and track progress.
 3. Responsive design for desktop and mobile.
 4. Data persists across sessions with `localStorage`.
 
-## How to Use
-
-1. **Create a Task**:
-   - Enter task details and add it to your list.
-2. **Record Time**:
-   - Log time spent on tasks to track progress.
-3. **Edit/Delete**:
-   - Manage tasks to stay organized.
-
 ## Installation
 
 ### **Visit the App Online**:
