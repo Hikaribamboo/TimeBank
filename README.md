@@ -1,59 +1,51 @@
-# QuickCart: A Simple EC Site
+# TimeBank - Time Management App
 
-QuickCart is a minimalistic e-commerce platform built to practice essential web development skills, including database operations, user authentication, and full-stack development using Django. This project is designed as a hands-on learning experience for integrating various web technologies into a functional application.
+A simple time management app to organize tasks, set goals, and track progress.
+
+## How it Works
+
+1. **Task Management**:
+   - Add, edit, and delete tasks with target times and deadlines.
+2. **Time Recording**:
+   - Record time spent on tasks in hours and minutes.
+3. **Data Storage**:
+   - Stores task data in `localStorage` for persistence.
+4. **Modal Windows**:
+   - User-friendly modals for managing tasks and details.
+
+## Technologies Used
+
+- **HTML**: Structure of the app.
+- **CSS**: Styling for layout and design.
+- **JavaScript**: App logic and interactions.
+- **localStorage**: Data storage within the browser.
 
 ## Features
 
-1. **User Authentication**:
-   - User registration with TOTP (Time-based One-Time Password) for secure login.
-   - Login and logout functionality.
-   - User-specific dashboards.
+1. Create tasks with titles, deadlines, and target times.
+2. Record and track time progress for each task.
+3. Responsive design for desktop and mobile.
+4. Data persists across sessions with `localStorage`.
 
-2. **E-commerce Functionality**:
-   - Product listing by registered sellers.
-   - Product search and filtering.
-   - Purchase and sales history management.
+## How to Use
 
-3. **Notifications**:
-   - Notifications for user actions.
+1. **Create a Task**:
+   - Enter task details and add it to your list.
+2. **Record Time**:
+   - Log time spent on tasks to track progress.
+3. **Edit/Delete**:
+   - Manage tasks to stay organized.
 
-4. **Dynamic UI/UX**:
-   - Responsive design.
-   - Interactive forms and modals.
+## Installation
 
-## Purpose
+### **Visit the App Online**:
+- [TimeBank](https://github.com/Hikaribamboo/TimeBank)
 
-This project was created with the following objectives:
-1. **Database Operations**: Learn and practice managing complex data models, including relational mappings.
-2. **Authentication Management**: Implement secure user registration and login processes.
-3. **Django Framework**: Gain proficiency in Django for backend development.
-4. **Full-Stack Development**: Integrate frontend and backend seamlessly to create a fully functional web application.
+### **Run Locally**:
 
-## Tech Stack
-
-### **Languages**:
-- Python
-- JavaScript
-- HTML
-- CSS
-
-### **Frameworks and Libraries**:
-1. **Django (Backend)**:
-   - User management
-   - Templating
-   - Database ORM (Object Relational Mapping)
-
-2. **Bootstrap**: For responsive UI design.
-3. **PyOTP**: For implementing TOTP-based authentication.
-4. **QRCode**: To generate QR codes for user registration.
-
-### **Database**:
-- SQLite (default for Django, simple and sufficient for development).
-
-### **Development Tools**:
-1. **Visual Studio Code (VS Code)**: Code editing.
-2. **Git and GitHub**: Version control and repository hosting.
-3. **Browser Developer Tools**: Debugging frontend issues.
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/Hikaribamboo/TimeBank.git
 
 ### **How to Use**:
 1. Access to "https://hikaribamboo.github.io/TimeBank/" 
